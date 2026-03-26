@@ -1,1 +1,5 @@
-# OSS_Project_22212022
+# ALCOHOLIC
+
+## 🍻🍺 Make your alcohol life more funny!!! 🍻🍺
+* 🔍 find drink
+* 🍶 make your drink list
