@@ -1,0 +1,55 @@
+{
+  "users": [
+    {
+      "id": "1234",
+      "nickname": "123",
+      "password": "1234",
+      "favorites": [
+        "1"
+      ]
+    }
+  ],
+  "drinks": [
+    {
+      "id": "1",
+      "name": "참이슬 후레쉬",
+      "category": "소주",
+      "sweetness_level": 2,
+      "abv_range": 15,
+      "scents": [
+        "깔끔한",
+        "알코올"
+      ],
+      "price": 1800,
+      "tastes": [
+        "깔끔함"
+      ],
+      "atmospheres": [
+        "삼겹살",
+        "친구와"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "발베니 12년 더블우드",
+      "category": "위스키",
+      "sweetness_level": 3,
+      "abv_range": 40,
+      "scents": [
+        "바닐라",
+        "꿀",
+        "오크"
+      ],
+      "price": 110000,
+      "tastes": [
+        "부드러움",
+        "너티함"
+      ],
+      "atmospheres": [
+        "홈바",
+        "분위기있는"
+      ]
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
