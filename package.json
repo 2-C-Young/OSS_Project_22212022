@@ -1,5 +1,12 @@
 {
-  "dependencies": {
-    "axios": "^1.16.0"
+  "name": "alcoholic",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI-powered drink recommendation app",
+  "scripts": {
+    "server": "json-server --watch db.json --port 4000"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
   }
 }
