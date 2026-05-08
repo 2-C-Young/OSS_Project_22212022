@@ -46,8 +46,8 @@
 ## 2. Use Case Analysis
 
 ### 2.1 Use Case Diagram
+<img width="607" height="690" alt="image" src="https://github.com/user-attachments/assets/03d9104c-ba33-4dff-bc10-042c9c0a7125" />
 
-> 사용자(User) 액터와 시스템 간의 상호작용을 나타낸 다이어그램.  
 > 포함된 유스케이스: Log out, Sign up, Log in, Save favorite drink, Delete favorite drink, Show favorite drinks, Search drink by type, Search drink by name, Show drink
 
 ### 2.2 Use Case List
@@ -63,7 +63,6 @@
 | Search drink by name | #7 | 이름별 주류 검색 | User |
 | Show profile | #8 | 프로필 표시 | System |
 | Show drink | #9 | 주류 정보 표시 | System |
-| Recommend drink | #10 | 주류 추천 표시 | System |
 
 ### 2.3 Use Case Description
 
@@ -384,40 +383,6 @@
 
 ---
 
-#### Use Case #10: Recommend Drink
-
-| 항목 | 내용 |
-|---|---|
-| **Summary** | 사용자가 추천받을 술들을 보여줌. |
-| **Scope** | ALCOHOLIC |
-| **Level** | User level |
-| **Author** | 이시영 |
-| **Last Update** | 05/02/2026 |
-| **Status** | Under Review |
-| **Primary Actor** | System |
-| **Secondary Actors** | Server |
-| **Preconditions** | 사용자가 취향 태그 입력을 완료한 상태. |
-| **Trigger** | 사용자가 취향을 입력하고 술을 추천받는 경우. |
-| **Success Condition** | 데이터베이스에서 태그와 가장 많이 일치하는 술부터 순서대로 사용자 화면에 띄워준다. |
-| **Failed Condition** | 추천 시스템 알고리즘 에러 발생 시 결과를 띄우지 못함. |
-
-**Main Success Scenario**
-
-| Step | Action |
-|---|---|
-| 1 | 데이터베이스에서 사용자의 취향에 가장 잘 맞는 일부 술들의 정보를 가져온다. |
-| 2 | 태그와 가장 많이 일치하는 술부터 순서대로 정렬한다. |
-| 3 | 사용자의 화면에 추천 결과를 띄워준다. |
-
-**Extension Scenarios**
-
-| Step | Branching Action |
-|---|---|
-| 2 | 2a. 태그 일치도가 낮아 추천의 정확성이 떨어지는 경우. → 2a1. 안내 메시지를 보여준다. |
-
-**Related Information:** Performance ≤ 3 Seconds / Due Date: 2026-06-20
-
----
 
 ## 3. Domain Analysis
 
@@ -436,32 +401,39 @@
 ## 4. User Interface Prototype
 
 ### 4.1 Homepage
+<img width="642" height="322" alt="image" src="https://github.com/user-attachments/assets/9fb9a982-f3d0-4ca4-b159-10530ebf0864" />
 
 처음 웹에 들어오면 나오는 페이지. 상단에는 홈, 즐겨찾기 버튼과 로그인, 회원가입 버튼이 있다. 중단에는 추천을 받을 수 있는 버튼, 하단에는 인기 주류를 카드 형태로 보여준다.
 
 ### 4.2 Log in
+<img width="642" height="323" alt="image" src="https://github.com/user-attachments/assets/7655e897-0f06-46de-986a-080a512a749c" />
 
 로그인 버튼을 누르면 등록되어있는 아이디와 비밀번호를 입력하여 로그인을 할 수 있다.
 
 ### 4.3 Sign up
+<img width="642" height="323" alt="image" src="https://github.com/user-attachments/assets/1afdcae0-82b0-4350-87ee-6da26c214792" />
 
 회원가입 버튼을 누르면 이름, 아이디, 비밀번호를 입력하여 새로운 회원을 만들 수 있다.
 
 ### 4.4 Recommendation
+<img width="642" height="323" alt="image" src="https://github.com/user-attachments/assets/bce47ac8-3bdd-47a4-bae4-5e91ce52a21f" />
 
 추천받기 버튼을 누르면 가격대, 도수, 당도, 맛 태그를 이용하여 취향에 맞는 추천을 받을 수 있다. 선택한 것과 가장 가까운 것부터 보여준다.
 
 ### 4.5 Information
+<img width="642" height="324" alt="image" src="https://github.com/user-attachments/assets/07ca230b-9bcc-4457-b905-dadbd2ba82bc" />
 
 술 실물을 클릭하면 술의 상세정보를 볼 수 있는 페이지가 나온다. 술의 이름, 가격, 도수, 당도, 향과 맛의 태그, 추천 분위기를 보여준다.
 
 ### 4.6 Search Drink
+<img width="642" height="273" alt="image" src="https://github.com/user-attachments/assets/b0935c6f-20f8-460d-ab6b-9e43342ccb64" />
 
 검색하고 싶은 술의 이름을 입력하고 확인 버튼을 누를 수 있는 팝업. 예시: `참이슬`, `발베니`…
 
 ### 4.7 Show Drink
+<img width="642" height="317" alt="image" src="https://github.com/user-attachments/assets/a8e5eedf-b782-4785-883e-e24a825ac60c" />
 
-술을 검색하면 나오는 페이지. 이름이 포함되는 술을 화면에 띄워주고, 술을 클릭하면 상세정보 페이지로 넘어간다.
+술을 검색하면 나오는 페이지. 이름이나 취향으로 검색했을 때 조건에 맞는 술들을 화면에 띄워주고, 술을 클릭하면 상세정보 페이지로 넘어간다.
 
 ---
 
