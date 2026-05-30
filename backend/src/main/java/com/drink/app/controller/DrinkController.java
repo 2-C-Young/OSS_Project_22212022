@@ -1,5 +1,6 @@
 package com.drink.app.controller;
 
+import com.drink.app.dto.DrinkDto;
 import com.drink.app.model.Drink;
 import com.drink.app.model.User;
 import com.drink.app.service.DrinkService;
@@ -60,4 +61,28 @@ public class DrinkController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PostMapping("/recommend")
+    public ResponseEntity<?> recommend(@RequestBody DrinkDto.RecommendRequest request) {
+        try {
+            List<Drink> recommended = drinkService.recommendDrinks(request);
+            return ResponseEntity.ok(recommended);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createDrink(@RequestBody DrinkDto.CreateRequest request, @RequestParam String userId) {
+        try {
+            Drink drink = drinkService.createDrink(request, userId);
+            return ResponseEntity.ok(drink);
+        } catch (SecurityException e) {
+            return ResponseEntity.status(org.springframework.http.HttpStatus.FORBIDDEN).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
+
+

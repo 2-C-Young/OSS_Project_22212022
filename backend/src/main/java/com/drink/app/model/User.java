@@ -26,4 +26,8 @@ public class User {
     @Column(name = "favorites", columnDefinition = "bigint[]")
     @Builder.Default
     private List<Long> favorites = new ArrayList<>();
+    
+    @Column(name = "role", columnDefinition = "varchar(50) default 'USER'")
+    @Builder.Default
+    private String role = "USER";
 }

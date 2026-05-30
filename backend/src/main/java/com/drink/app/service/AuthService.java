@@ -27,6 +27,7 @@ public class AuthService {
                 .nickname(request.getNickname())
                 .password(request.getPassword())
                 .favorites(new ArrayList<>())
+                .role(request.getId().equalsIgnoreCase("admin") ? "ADMIN" : "USER")
                 .build();
 
         userRepository.save(user);
@@ -34,6 +35,7 @@ public class AuthService {
         return UserDto.Response.builder()
                 .id(user.getId())
                 .nickname(user.getNickname())
+                .role(user.getRole())
                 .build();
     }
 
@@ -48,6 +50,7 @@ public class AuthService {
         return UserDto.Response.builder()
                 .id(user.getId())
                 .nickname(user.getNickname())
+                .role(user.getRole())
                 .build();
     }
 }

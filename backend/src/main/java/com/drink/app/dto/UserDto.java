@@ -33,5 +33,6 @@ public class UserDto {
     public static class Response {
         private String id;
         private String nickname;
+        private String role;
     }
 }

@@ -46,6 +46,39 @@ export const drinkService = {
       throw new Error('즐겨찾기 여부를 확인하는 데 실패했습니다.');
     }
     return await response.json();
+  },
+
+  // 맞춤 술 추천
+  recommendDrinks: async (filters) => {
+    const response = await fetch(`${API_URL}/api/drinks/recommend`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(filters)
+    });
+    if (!response.ok) {
+      throw new Error('맞춤 추천 결과를 불러오는 데 실패했습니다.');
+    }
+    return await response.json();
+  },
+
+  // 술 등록 (수기 입력 추가)
+  createDrink: async (drinkData, userId) => {
+    const response = await fetch(`${API_URL}/api/drinks?userId=${encodeURIComponent(userId)}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(drinkData)
+    });
+    if (!response.ok) {
+      const errorMsg = await response.text();
+      throw new Error(errorMsg || '술 등록에 실패했습니다.');
+    }
+    return await response.json();
   }
 };
+
+
 

@@ -7,6 +7,7 @@ import FavoritesPage from './pages/FavoritesPage'
 import DrinkDetailPage from './pages/DrinkDetailPage'
 import RecommendationPage from './pages/RecommendationPage'
 import SearchPage from './pages/SearchPage'
+import AddDrinkPage from './pages/AddDrinkPage'
 import { authService } from './utils/auth'
 import { drinkService } from './utils/drinkService'
 
@@ -133,6 +134,9 @@ function Navigation() {
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-amber-500 px-3 py-2 font-medium">홈</Link>
             <Link to="/favorites" className="text-slate-300 hover:text-amber-500 px-3 py-2 font-medium">즐겨찾기</Link>
+            {user && user.role === 'ADMIN' && (
+              <Link to="/add-drink" className="text-slate-300 hover:text-amber-500 px-3 py-2 font-medium">술 등록</Link>
+            )}
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
@@ -237,6 +241,7 @@ function App() {
           <Route path="/drink/:id" element={<DrinkDetailPage />} />
           <Route path="/recommend" element={<RecommendationPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/add-drink" element={<AddDrinkPage />} />
         </Routes>
       </div>
     </Router>
