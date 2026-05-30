@@ -1,0 +1,25 @@
+# Gradle build outputs
+.gradle/
+build/
+
+# IDE directories and files
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+.classpath
+.project
+.settings/
+bin/
+
+# Local configuration files containing credentials
+src/main/resources/application-local.yml
+src/main/resources/application-local.properties
+
+# Log files
+*.log
+
+# System files
+.DS_Store
+Thumbs.db

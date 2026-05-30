@@ -2,3 +2,4 @@ node_modules/
 .continue/
 db.json
 package-lock.json
+schema.sql

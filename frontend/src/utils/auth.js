@@ -1,57 +1,41 @@
-﻿import { supabase } from '../lib/supabaseClient';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 export const authService = {
   // 회원가입
   signup: async (userData) => {
-    const { id, nickname, password } = userData;
+    const response = await fetch(`${API_URL}/api/auth/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    });
 
-    const { data: existingUsers, error: existingError } = await supabase
-      .from('users')
-      .select('id')
-      .eq('id', id)
-      .limit(1);
-
-    if (existingError) {
-      throw new Error(existingError.message);
+    if (!response.ok) {
+      const errorMsg = await response.text();
+      throw new Error(errorMsg || '회원가입에 실패했습니다.');
     }
 
-    if (existingUsers.length > 0) {
-      throw new Error('이미 존재하는 아이디입니다.');
-    }
-
-    const { data, error } = await supabase
-      .from('users')
-      .insert({ id, nickname, password, favorites: [] })
-      .select()
-      .single();
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    return data;
+    return await response.json();
   },
 
   // 로그인
   login: async (id, password) => {
-    const { data, error } = await supabase
-      .from('users')
-      .select('id, nickname')
-      .eq('id', id)
-      .eq('password', password)
-      .single();
+    const response = await fetch(`${API_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id, password })
+    });
 
-    if (error || !data) {
-      throw new Error('아이디 또는 비밀번호가 일치하지 않습니다.');
+    if (!response.ok) {
+      const errorMsg = await response.text();
+      throw new Error(errorMsg || '아이디 또는 비밀번호가 일치하지 않습니다.');
     }
 
-    const user = {
-      id: data.id,
-      nickname: data.nickname
-    };
-
+    const user = await response.json();
     localStorage.setItem('user', JSON.stringify(user));
-
     return user;
   },
 
@@ -64,3 +48,4 @@ export const authService = {
     return user ? JSON.parse(user) : null;
   }
 };
+
