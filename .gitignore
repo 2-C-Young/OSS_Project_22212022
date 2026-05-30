@@ -3,3 +3,6 @@ node_modules/
 db.json
 package-lock.json
 schema.sql
+screen.png
+DESIGN.md
+code.html

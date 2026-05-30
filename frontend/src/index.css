@@ -1,9 +1,72 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #f2ca50;
+  --color-on-primary: #3c2f00;
+  --color-primary-container: #d4af37;
+  --color-on-primary-container: #554300;
+  --color-secondary: #ffb77d;
+  --color-on-secondary: #4d2600;
+  --color-secondary-container: #fd8b00;
+  --color-on-secondary-container: #603100;
+  --color-tertiary: #cbcddd;
+  --color-on-tertiary: #2c303c;
+  --color-tertiary-container: #afb2c1;
+  --color-on-tertiary-container: #414551;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+  
+  --color-background: #131313;
+  --color-on-background: #e5e2e1;
+  --color-surface: #131313;
+  --color-on-surface: #e5e2e1;
+  --color-surface-variant: #353534;
+  --color-on-surface-variant: #d0c5af;
+  --color-surface-dim: #131313;
+  --color-surface-bright: #393939;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-inverse-surface: #e5e2e1;
+  --color-inverse-on-surface: #313030;
+  --color-inverse-primary: #735c00;
+  --color-surface-tint: #e9c349;
+
+  --color-outline: #99907c;
+  --color-outline-variant: #4d4635;
+
+  --color-primary-fixed: #ffe088;
+  --color-primary-fixed-dim: #e9c349;
+  --color-on-primary-fixed: #241a00;
+  --color-on-primary-fixed-variant: #574500;
+  --color-secondary-fixed: #ffdcc3;
+  --color-secondary-fixed-dim: #ffb77d;
+  --color-on-secondary-fixed: #2f1500;
+  --color-on-secondary-fixed-variant: #6e3900;
+  --color-tertiary-fixed: #dfe2f1;
+  --color-tertiary-fixed-dim: #c3c6d5;
+  --color-on-tertiary-fixed: #171b26;
+  --color-on-tertiary-fixed-variant: #434653;
+
+  --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Manrope", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
+  --spacing-container-max: 1280px;
+  --spacing-gutter: 24px;
+  --spacing-margin-desktop: 64px;
+  --spacing-margin-mobile: 20px;
+  --spacing-section-gap: 80px;
+  --spacing-unit: 8px;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #0f172a; /* 조금 더 세련된 네이비 계열의 어두운 배경 */
-  color: white;
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
 }
 
 body {
@@ -14,4 +77,19 @@ body {
 
 #root {
   width: 100%;
+}
+
+.glass-card {
+  background: rgba(30, 34, 45, 0.4);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 70% 50%, rgba(242, 202, 80, 0.08) 0%, transparent 60%);
+}
+
+.premium-glow {
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.1), 0 0 20px rgba(242, 202, 80, 0.2);
 }

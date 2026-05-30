@@ -29,7 +29,6 @@ const AddDrinkPage = () => {
   useEffect(() => {
     if (!user || user.role !== 'ADMIN') {
       setIsAdmin(false);
-      // 권한이 없으면 3초 후에 메인 페이지로 보냅니다.
       const timer = setTimeout(() => {
         navigate('/');
       }, 3000);
@@ -60,7 +59,6 @@ const AddDrinkPage = () => {
     setError(null);
     setSuccess(false);
 
-    // 쉼표로 구분된 태그들을 배열로 변환하고 양끝 공백 제거
     const parseTags = (tagStr) => {
       if (!tagStr.trim()) return [];
       return tagStr.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
@@ -105,11 +103,10 @@ const AddDrinkPage = () => {
     }
   };
 
-
   if (checkingAuth) {
     return (
-      <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-amber-500"></div>
+      <div className="min-h-screen bg-background text-on-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-primary"></div>
       </div>
     );
   }
@@ -117,21 +114,21 @@ const AddDrinkPage = () => {
   if (!isAdmin) {
     return (
       <div className="max-w-md mx-auto px-4 py-12 pt-32 text-center">
-        <div className="bg-slate-900 rounded-3xl border border-slate-800 p-8 shadow-2xl space-y-6">
+        <div className="bg-surface rounded-3xl border border-white/5 p-8 shadow-2xl space-y-6 glass-card">
           <div className="flex justify-center">
-            <div className="p-4 bg-red-500/10 rounded-full border border-red-500/20 text-red-500">
+            <div className="p-4 bg-error/10 rounded-full border border-error/20 text-error">
               <ShieldAlert size={48} />
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-slate-100">접근 권한이 없습니다</h2>
-          <p className="text-slate-400 text-sm leading-relaxed">
+          <h2 className="text-2xl font-serif font-bold text-on-background">접근 권한이 없습니다</h2>
+          <p className="text-on-surface-variant text-sm leading-relaxed">
             이 페이지는 관리자 전용 메뉴입니다.<br />
             일반 사용자는 접근할 수 없습니다.<br />
-            <span className="text-amber-500 font-bold">3초 후 홈 화면으로 리다이렉트됩니다.</span>
+            <span className="text-primary font-bold">3초 후 홈 화면으로 리다이렉트됩니다.</span>
           </p>
           <button 
             onClick={() => navigate('/')}
-            className="w-full bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-bold transition-all text-sm text-slate-200"
+            className="w-full bg-surface-container hover:bg-surface-container-high py-3 rounded-xl font-bold transition-all text-sm text-on-surface"
           >
             즉시 홈으로 이동
           </button>
@@ -144,19 +141,19 @@ const AddDrinkPage = () => {
     <div className="max-w-2xl mx-auto px-4 py-12 pt-24">
       <button 
         onClick={() => navigate(-1)}
-        className="flex items-center text-slate-400 hover:text-white mb-8 transition-colors"
+        className="flex items-center text-on-surface-variant hover:text-white mb-8 transition-colors"
       >
         <ArrowLeft size={20} className="mr-2" /> 뒤로 가기
       </button>
 
-      <div className="bg-slate-900 rounded-3xl border border-slate-800 p-8 shadow-2xl">
+      <div className="bg-surface rounded-3xl border border-white/5 p-8 shadow-2xl glass-card">
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-3 bg-amber-500/20 rounded-2xl">
-            <PlusCircle className="text-amber-500" size={28} />
+          <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20">
+            <PlusCircle className="text-primary" size={28} />
           </div>
           <div>
-            <h2 className="text-2xl font-bold">새 주류 등록</h2>
-            <p className="text-slate-400 text-sm">데이터베이스에 수기로 새로운 술 정보를 추가합니다.</p>
+            <h2 className="font-serif text-2xl font-bold text-on-background">새 주류 등록</h2>
+            <p className="text-on-surface-variant text-sm">데이터베이스에 수기로 새로운 술 정보를 추가합니다.</p>
           </div>
         </div>
 
@@ -168,35 +165,33 @@ const AddDrinkPage = () => {
         )}
 
         {error && (
-          <div className="mb-6 bg-red-950/20 border border-red-800 text-red-400 p-4 rounded-2xl text-center">
+          <div className="mb-6 bg-error/10 border border-error text-error p-4 rounded-2xl text-center text-sm">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* 이름 */}
             <div className="space-y-2">
-              <label className="font-bold text-slate-200 block text-sm">술 이름 *</label>
+              <label className="font-bold text-on-surface-variant block text-sm">술 이름 *</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="예: 발베니 12년, 한라산"
-                className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 transition-all text-white"
+                className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white"
                 required
               />
             </div>
 
-            {/* 카테고리 */}
             <div className="space-y-2">
-              <label className="font-bold text-slate-200 block text-sm">카테고리 *</label>
+              <label className="font-bold text-on-surface-variant block text-sm">카테고리 *</label>
               <select
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 transition-all text-white"
+                className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white"
               >
                 <option value="소주">소주</option>
                 <option value="맥주">맥주</option>
@@ -207,23 +202,21 @@ const AddDrinkPage = () => {
               </select>
             </div>
 
-            {/* 가격 */}
             <div className="space-y-2">
-              <label className="font-bold text-slate-200 block text-sm">가격 (원) *</label>
+              <label className="font-bold text-on-surface-variant block text-sm">가격 (원) *</label>
               <input
                 type="number"
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
                 placeholder="예: 1500, 110000"
-                className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 transition-all text-white"
+                className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white"
                 required
               />
             </div>
 
-            {/* 도수 */}
             <div className="space-y-2">
-              <label className="font-bold text-slate-200 block text-sm">도수 (ABV, %) *</label>
+              <label className="font-bold text-on-surface-variant block text-sm">도수 (ABV, %) *</label>
               <input
                 type="number"
                 step="0.1"
@@ -231,15 +224,14 @@ const AddDrinkPage = () => {
                 value={formData.abvRange}
                 onChange={handleChange}
                 placeholder="예: 16.5, 40.0"
-                className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 transition-all text-white"
+                className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white"
                 required
               />
             </div>
           </div>
 
-          {/* 당도 */}
           <div className="space-y-2">
-            <label className="font-bold text-slate-200 block text-sm">당도 (1: 안달고 ~ 5: 매우달콤)</label>
+            <label className="font-bold text-on-surface-variant block text-sm">당도 (1: 안달고 ~ 5: 매우달콤)</label>
             <div className="flex gap-2">
               {[1, 2, 3, 4, 5].map((num) => (
                 <button
@@ -248,8 +240,8 @@ const AddDrinkPage = () => {
                   onClick={() => setFormData({ ...formData, sweetnessLevel: num })}
                   className={`flex-1 py-3 rounded-xl font-bold transition-all ${
                     formData.sweetnessLevel === num 
-                      ? 'bg-amber-600 text-white shadow-md' 
-                      : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                      ? 'bg-primary text-on-primary shadow-md' 
+                      : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant'
                   }`}
                 >
                   {num}
@@ -258,49 +250,46 @@ const AddDrinkPage = () => {
             </div>
           </div>
 
-          {/* 향 태그 */}
           <div className="space-y-2">
-            <label className="font-bold text-slate-200 block text-sm">향 태그 (쉼표로 구분)</label>
+            <label className="font-bold text-on-surface-variant block text-sm">향 태그 (쉼표로 구분)</label>
             <input
               type="text"
               name="scents"
               value={formData.scents}
               onChange={handleChange}
               placeholder="예: 알코올, 과일, 꽃, 나무, 바닐라"
-              className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 transition-all text-white text-sm"
+              className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white text-sm"
             />
           </div>
 
-          {/* 맛 태그 */}
           <div className="space-y-2">
-            <label className="font-bold text-slate-200 block text-sm">맛 태그 (쉼표로 구분)</label>
+            <label className="font-bold text-on-surface-variant block text-sm">맛 태그 (쉼표로 구분)</label>
             <input
               type="text"
               name="tastes"
               value={formData.tastes}
               onChange={handleChange}
               placeholder="예: 깔끔함, 씀, 단맛, 탄산, 상큼함"
-              className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 transition-all text-white text-sm"
+              className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white text-sm"
             />
           </div>
 
-          {/* 분위기 태그 */}
           <div className="space-y-2">
-            <label className="font-bold text-slate-200 block text-sm">추천 분위기 태그 (쉼표로 구분)</label>
+            <label className="font-bold text-on-surface-variant block text-sm">추천 분위기 태그 (쉼표로 구분)</label>
             <input
               type="text"
               name="atmospheres"
               value={formData.atmospheres}
               onChange={handleChange}
               placeholder="예: 회식, 친구, 혼술, 바, 연인, 축구"
-              className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500 transition-all text-white text-sm"
+              className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white text-sm"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-amber-600 hover:bg-amber-700 py-4 rounded-2xl text-lg font-bold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl mt-6 flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full bg-secondary-container hover:bg-secondary text-on-secondary-container py-4 rounded-2xl text-lg font-bold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl mt-6 flex items-center justify-center gap-2 disabled:opacity-50"
           >
             {loading ? '등록 중...' : '새 주류 등록 완료'}
           </button>
