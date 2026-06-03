@@ -63,9 +63,10 @@
 * Delete favorite drink
 * Search drink by type
 * Search drink by name
-* Show profile
 * Show drink
-* Recommend drink
+* Show drink detail
+* Show favorite drinks
+* Create New drink
   
 **System <-> Database**
 * Save profile
@@ -125,26 +126,33 @@
 | Actor | User |
 | Description | 사용자가 자신이 찾고싶은 술을 이름으로 검색한다. |
 
-### 8) Show profile
+### 8) Show drink
 
 | 항목 | 내용 |
 |---|---|
 | Actor | System |
-| Description | 사용자의 이름, 선호하는 술 리스트를 사용자에게 보여준다. |
+| Description | 모든 술의 목록을 보여준다. |
 
-### 9) Show drink
-
-| 항목 | 내용 |
-|---|---|
-| Actor | System |
-| Description | 사용자가 이름으로 찾는 술의 정보를 사용자에게 보여준다. |
-
-### 10) Recommend drink
+### 9) Show drink detail
 
 | 항목 | 내용 |
 |---|---|
 | Actor | System |
-| Description | 사용자의 취향에 맞는 술의 정보를 사용자에게 보여준다. |
+| Description | 술의 상세정보를 보여준다. |
+
+### 10) Show Favorite drinks
+
+| 항목 | 내용 |
+|---|---|
+| Actor | System |
+| Description | 사용자의 선호하는 술 리스트를 사용자에게 보여준다. |
+
+### 11) Create New Drink
+
+| 항목 | 내용 |
+|---|---|
+| Actor | Admin |
+| Description | 새로운 술을 추가한다. |
 
 ---
 
@@ -213,32 +221,41 @@
 | Dynamics | 사용자가 술의 이름으로 술을 검색하는 경우. |
 | Goals | 사용자가 입력한 술의 이름을 받고 비슷한 이름의 술들을 모두 검색하게 한다. |
 
-### 8) Show profile
+### 8) Show drink detail
 
 | 항목 | 내용 |
 |---|---|
-| Purpose | 사용자가 자신의 이름과 술 리스트를 확인할 수 있게 한다. |
-| Approach | 사용자가 로그인을 성공하였을 때 자신의 닉네임과 선호하는 술 리스트를 볼 수 있게 데이터베이스에서 사용자의 정보를 불러온다. |
-| Dynamics | 사용자가 자신의 프로필을 확인하려고 하는 경우. |
-| Goals | 로그인되어있는 사용자의 프로필을 데이터베이스에서 가져오고 사용자에게 보여준다. |
+| Purpose | 사용자가 술의 상세정보를 볼 수 있게 한다. |
+| Approach | 사용자가 술 카드를 클릭했을 때 술의 상세정보를 데이터베이스에서 불러온다. |
+| Dynamics | 사용자가 술의 상세정보를 확인하려고 하는 경우. |
+| Goals | 술의 상세 정보를 데이터베이스에서 가져오고 사용자에게 보여준다. |
 
 ### 9) Show drink
 
 | 항목 | 내용 |
 |---|---|
-| Purpose | 사용자가 술을 이름으로 검색하였을 때 검색된 술들을 보여줌. |
-| Approach | 데이터베이스에서 검색한 이름과 유사한 술들의 정보를 모두 가져와 사용자의 화면에 띄워준다. |
-| Dynamics | 사용자가 검색한 이름에 맞는 술을 보는 경우. |
-| Goals | 이름이 유사한 순서부터 차례대로 술들을 보여주는 기능을 구현한다. |
+| Purpose | 사용자가 모든 술 목록을 볼 수 있게 한다. |
+| Approach | 데이터베이스에서 술들의 정보를 모두 가져와 사용자의 화면에 띄워준다. |
+| Dynamics | 사용자가 전체 술 목록 페이지를 들어가는 경우. |
+| Goals | 등록된 순서로 차례대로 술들을 보여주는 기능을 구현한다. |
 
-### 10) Recommend drink
+### 10) Show Favorite Drinks
 
 | 항목 | 내용 |
 |---|---|
-| Purpose | 사용자가 추천받을 술들을 보여줌. |
-| Approach | 데이터베이스에서 사용자의 취향에 가장 잘 맞는 일부 술들의 정보를 가져와 사용자의 화면에 띄워준다. |
-| Dynamics | 사용자가 취향을 입력하고 술을 추천받는 경우. |
-| Goals | 데이터베이스에서 태그와 가장 많이 일치하는 술부터 순서대로 사용자에 화면에 띄워준다. |
+| Purpose | 사용자가 즐겨찾기 해놓은 술들을 보여줌. |
+| Approach | 데이터베이스에서 사용자가 즐겨찾기 해놓은 술들의 정보를 가져와 화면에 띄워준다. |
+| Dynamics | 사용자가 즐겨찾기 페이지를 들어가는 경우. |
+| Goals | 데이터베이스에서 사용자의 즐겨찾기 목록을 검색하고 그에 맞는 술들을 보여준다. |
+
+### 11) Create New Drink
+
+| 항목 | 내용 |
+|---|---|
+| Purpose | 관리자가 새로운 술을 추가할 수 있게 하기 위함. |
+| Approach | 관리자 계정으로 로그인 한 사용자가 웹에서 술의 정보를 추가할 수 있게 한다. |
+| Dynamics | 관리자 계정으로 로그인 한 사용자가 새로운 술의 정보를 데이터베이스에 넣으려고 하는 경우. |
+| Goals | 데이터베이스에 새로운 술이 추가될 수 있도록 한다. |
 
 ---
 
