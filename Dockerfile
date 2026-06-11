@@ -10,10 +10,8 @@ RUN npm run build
 FROM gradle:8.7-jdk17 AS backend-builder
 WORKDIR /app
 
-# Gradle 캐시를 활용하기 위해 설정 파일 먼저 복사
-COPY backend/build.gradle backend/settings.gradle* backend/gradlew ./backend/
-COPY backend/gradle ./backend/gradle
-RUN chmod +x ./backend/gradlew
+# Gradle 설정 파일 복사
+COPY backend/build.gradle backend/settings.gradle* ./backend/
 
 # 백엔드 소스코드 복사
 COPY backend/src ./backend/src
@@ -22,9 +20,9 @@ COPY backend/src ./backend/src
 # backend/build.gradle의 copyReactBuildFiles 태스크가 이 위치(../frontend/dist)를 참조하여 복사합니다.
 COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
 
-# 백엔드 빌드 실행
+# 백엔드 빌드 실행 (글로벌 gradle 사용으로 CRLF 에러 예방)
 WORKDIR /app/backend
-RUN ./gradlew bootJar --no-daemon -x test
+RUN gradle bootJar --no-daemon -x test
 
 # 3단계: 런타임 환경 구성
 FROM eclipse-temurin:17-jre-alpine
