@@ -11,6 +11,7 @@ import AddDrinkPage from './pages/AddDrinkPage'
 import DrinkListPage from './pages/DrinkListPage'
 import { authService } from './utils/auth'
 import { drinkService } from './utils/drinkService'
+import whiskeyBar from './assets/whiskey bar.jfif'
 
 // 메인 홈 섹션
 function HomePage() {
@@ -57,8 +58,12 @@ function HomePage() {
         <div className="relative group hidden md:block">
           <div className="absolute -inset-4 bg-primary/10 blur-3xl rounded-full opacity-50"></div>
           <div className="glass-card rounded-3xl overflow-hidden aspect-[4/3] relative flex items-center justify-center">
+            <img 
+              src={whiskeyBar} 
+              alt="Whiskey Bar" 
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10"></div>
-            <div className="absolute inset-0 flex items-center justify-center text-on-surface-variant/20 font-serif font-bold uppercase tracking-widest italic text-3xl">Main Visual</div>
           </div>
         </div>
       </header>
@@ -86,8 +91,14 @@ function HomePage() {
                 className="glass-card rounded-2xl group cursor-pointer hover:-translate-y-2 transition-all duration-300 flex flex-col h-full"
               >
                 <div className="aspect-[3/4] bg-surface-container-low rounded-t-2xl flex items-center justify-center text-on-surface-variant/20 overflow-hidden relative border-b border-white/5">
-                  <Wine size={64} className="opacity-20 group-hover:scale-110 transition-transform duration-500" />
-                  <span className="absolute text-[10px] bottom-2 opacity-30 tracking-wider">NO IMAGE</span>
+                  {drink.image_url ? (
+                    <img src={drink.image_url} alt={drink.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  ) : (
+                    <>
+                      <Wine size={64} className="opacity-20 group-hover:scale-110 transition-transform duration-500" />
+                      <span className="absolute text-[10px] bottom-2 opacity-30 tracking-wider">NO IMAGE</span>
+                    </>
+                  )}
                 </div>
                 <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
                   <div className="space-y-2">

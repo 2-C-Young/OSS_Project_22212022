@@ -45,4 +45,7 @@ public class Drink {
     @Column(name = "atmospheres", columnDefinition = "text[]")
     @Builder.Default
     private List<String> atmospheres = new ArrayList<>();
+
+    @Column(name = "image_url")
+    private String imageUrl;
 }

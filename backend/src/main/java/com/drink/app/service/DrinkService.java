@@ -151,6 +151,7 @@ public class DrinkService {
                 .scents(request.getScents() != null ? request.getScents() : new ArrayList<>())
                 .tastes(request.getTastes() != null ? request.getTastes() : new ArrayList<>())
                 .atmospheres(request.getAtmospheres() != null ? request.getAtmospheres() : new ArrayList<>())
+                .imageUrl(request.getImageUrl())
                 .build();
         return drinkRepository.save(drink);
     }

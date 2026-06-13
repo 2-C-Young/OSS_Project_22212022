@@ -17,7 +17,8 @@ const AddDrinkPage = () => {
     sweetnessLevel: 3,
     scents: '',
     tastes: '',
-    atmospheres: ''
+    atmospheres: '',
+    imageUrl: ''
   });
 
   const [loading, setLoading] = useState(false);
@@ -72,7 +73,8 @@ const AddDrinkPage = () => {
       sweetness_level: formData.sweetnessLevel,
       scents: parseTags(formData.scents),
       tastes: parseTags(formData.tastes),
-      atmospheres: parseTags(formData.atmospheres)
+      atmospheres: parseTags(formData.atmospheres),
+      image_url: formData.imageUrl
     };
 
     if (!drinkData.name.trim()) {
@@ -92,7 +94,8 @@ const AddDrinkPage = () => {
         sweetnessLevel: 3,
         scents: '',
         tastes: '',
-        atmospheres: ''
+        atmospheres: '',
+        imageUrl: ''
       });
       alert('술이 성공적으로 등록되었습니다!');
     } catch (err) {
@@ -282,6 +285,18 @@ const AddDrinkPage = () => {
               value={formData.atmospheres}
               onChange={handleChange}
               placeholder="예: 회식, 친구, 혼술, 바, 연인, 축구"
+              className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white text-sm"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="font-bold text-on-surface-variant block text-sm">이미지 URL (선택)</label>
+            <input
+              type="url"
+              name="imageUrl"
+              value={formData.imageUrl}
+              onChange={handleChange}
+              placeholder="예: https://example.com/image.jpg"
               className="w-full bg-surface-container border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white text-sm"
             />
           </div>

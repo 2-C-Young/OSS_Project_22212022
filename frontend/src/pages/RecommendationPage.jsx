@@ -208,8 +208,14 @@ const RecommendationPage = () => {
 
                   <div>
                     <div className="aspect-video bg-surface-container-low rounded-2xl mb-6 flex items-center justify-center text-on-surface-variant/20 overflow-hidden relative border border-white/5">
-                      <Wine size={40} className="opacity-20 group-hover:scale-110 transition-transform" />
-                      <span className="absolute bottom-2 text-[9px] opacity-30 uppercase tracking-widest">{drink.category}</span>
+                      {drink.image_url ? (
+                        <img src={drink.image_url} alt={drink.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                      ) : (
+                        <>
+                          <Wine size={40} className="opacity-20 group-hover:scale-110 transition-transform" />
+                          <span className="absolute bottom-2 text-[9px] opacity-30 uppercase tracking-widest">{drink.category}</span>
+                        </>
+                      )}
                     </div>
 
                     <div className="space-y-4">

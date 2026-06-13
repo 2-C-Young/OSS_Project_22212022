@@ -31,6 +31,7 @@ public class DrinkDto {
         private List<String> scents;
         private List<String> tastes;
         private List<String> atmospheres;
+        private String imageUrl;
     }
 }
 

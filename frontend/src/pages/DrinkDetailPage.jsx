@@ -68,10 +68,16 @@ const DrinkDetailPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* 이미지 섹션 */}
           <div className="glass-card rounded-3xl border border-white/5 aspect-square flex items-center justify-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
-            <span className="text-on-surface-variant/10 font-serif font-bold uppercase tracking-[0.5em] italic text-4xl select-none">
-              {drink.category}
-            </span>
+            {drink.image_url ? (
+              <img src={drink.image_url} alt={drink.name} className="w-full h-full object-cover" />
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+                <span className="text-on-surface-variant/10 font-serif font-bold uppercase tracking-[0.5em] italic text-4xl select-none">
+                  {drink.category}
+                </span>
+              </>
+            )}
           </div>
 
           {/* 정보 섹션 */}

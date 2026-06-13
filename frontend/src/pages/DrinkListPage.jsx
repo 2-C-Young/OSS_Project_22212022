@@ -71,8 +71,14 @@ const DrinkListPage = () => {
                 className="group glass-card rounded-2xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all hover:-translate-y-1 flex flex-col justify-between h-full"
               >
                 <div className="aspect-[3/4] bg-surface-container-low flex items-center justify-center text-on-surface-variant/20 overflow-hidden relative border-b border-white/5">
-                  <Wine size={56} className="opacity-20 group-hover:scale-110 transition-transform duration-500" />
-                  <span className="absolute text-[10px] bottom-2 opacity-30 tracking-wider">NO IMAGE</span>
+                  {drink.image_url ? (
+                    <img src={drink.image_url} alt={drink.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  ) : (
+                    <>
+                      <Wine size={56} className="opacity-20 group-hover:scale-110 transition-transform duration-500" />
+                      <span className="absolute text-[10px] bottom-2 opacity-30 tracking-wider">NO IMAGE</span>
+                    </>
+                  )}
                 </div>
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                   <div className="space-y-2">

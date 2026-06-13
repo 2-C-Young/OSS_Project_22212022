@@ -74,8 +74,14 @@ const FavoritesPage = () => {
                 className="group glass-card rounded-2xl border border-white/5 overflow-hidden hover:border-primary/50 transition-all hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div className="h-48 bg-surface-container-low relative flex items-center justify-center overflow-hidden border-b border-white/5">
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent"></div>
-                  <span className="text-on-surface-variant/20 font-serif font-bold uppercase tracking-widest italic text-2xl group-hover:scale-110 transition-transform">{drink.category}</span>
+                  {drink.image_url ? (
+                    <img src={drink.image_url} alt={drink.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent"></div>
+                      <span className="text-on-surface-variant/20 font-serif font-bold uppercase tracking-widest italic text-2xl group-hover:scale-110 transition-transform">{drink.category}</span>
+                    </>
+                  )}
                   <button 
                     onClick={(e) => handleRemove(e, drink.id)}
                     className="absolute top-4 right-4 p-2 bg-background/80 hover:bg-error/80 rounded-full text-white transition-colors backdrop-blur-sm"
